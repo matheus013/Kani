@@ -1,6 +1,7 @@
 class Node:
     cost = 0
     parent = 0
+    left = True
     state = []
 
     def __init__(self, cost, parent, state, ):
@@ -15,13 +16,13 @@ class Node:
         for i in self.state:
             if i < 0:
                 return False
-        return True
+        return self.state[0] >= self.state[1] & self.state[2] >= self.state[3]
+
     @property
     def __str__(self):
         return self.state
 
     def __lt__(self, other):
-        print 12
         return self.f() < other.f()
 
     def finale(self, ):

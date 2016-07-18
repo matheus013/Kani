@@ -1,5 +1,3 @@
-import operator
-
 from Node import Node
 
 priority = []
@@ -22,19 +20,20 @@ def expand(actual, side):
     if aux.possible():
         priority.append(aux)
     priority.sort()
+    pass
 
 
 def travel(current, a, b, side):
     if side:
-        current.state[0] -= a
-        current.state[2] += a
-        current.state[1] -= b
-        current.state[3] += b
+        current.state[0] = current.state[0] - a
+        current.state[2] = current.state[2] + a
+        current.state[1] = current.state[1] - b
+        current.state[3] = current.state[3] + b
     else:
-        current.state[0] += a
-        current.state[2] -= a
-        current.state[1] += b
-        current.state[3] -= b
+        current.state[0] = current.state[0] + a
+        current.state[2] = current.state[2] - a
+        current.state[1] = current.state[1] + b
+        current.state[3] = current.state[3] - b
     return Node(current.state, current, ++current.cost)
 
 
@@ -46,9 +45,11 @@ def star(root):
             print next_node.state
             print "END"
             return next_node
-        expand(next_node, (next_node.cost % 2) == 0)
+        expand(next_node, not next_node.left)
+    pass
 
 
 if __name__ == '__main__':
     init = Node(0, 0, [3, 3, 0, 0])
     star(init)
+    pass
