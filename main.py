@@ -34,7 +34,7 @@ def travel(current, a, b, side):
         current.state[2] = current.state[2] - a
         current.state[1] = current.state[1] + b
         current.state[3] = current.state[3] - b
-    return Node(current.state, current, ++current.cost)
+    return Node(current.state, current, current.cost + 1)
 
 
 def star(root):
