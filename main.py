@@ -24,6 +24,7 @@ def expand(actual, side):
 
 
 def travel(current, a, b, side):
+    # print side
     if side:
         current.state[0] = current.state[0] - a
         current.state[2] = current.state[2] + a
@@ -34,22 +35,21 @@ def travel(current, a, b, side):
         current.state[2] = current.state[2] - a
         current.state[1] = current.state[1] + b
         current.state[3] = current.state[3] - b
-    return Node(current.state, current, current.cost + 1)
+    return Node(current.state, current, current.cost + 1, not side)
 
 
 def star(root):
     priority.append(root)
-    while priority:
+    while priority.__len__() > 0:
         next_node = priority.pop(0)
         if next_node.finale():
             print next_node.state
-            print "END"
             return next_node
-        expand(next_node, not next_node.left)
+        expand(next_node, next_node.left)
     pass
 
 
 if __name__ == '__main__':
-    init = Node(0, 0, [3, 3, 0, 0])
-    star(init)
+    start = Node(0, 0, [3, 3, 0, 0], True)
+    star(start)
     pass

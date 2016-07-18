@@ -1,18 +1,19 @@
 class Node:
     cost = 0
     parent = 0
-    left = True
+    left = bool()
     state = []
 
-    def __init__(self, cost, parent, state, ):
+    def __init__(self, cost, parent, state, left):
         self.cost = cost
         self.parent = parent
         self.state = state
+        self.left = left
 
-    def f(self, ):
+    def f(self):
         return self.cost + self.state[0] + self.state[1]
 
-    def possible(self, ):
+    def possible(self):
         for i in self.state:
             if i < 0:
                 return False
@@ -25,5 +26,5 @@ class Node:
     def __lt__(self, other):
         return self.f() < other.f()
 
-    def finale(self, ):
+    def finale(self):
         return self.state == [0, 0, 3, 3]
