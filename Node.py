@@ -1,7 +1,7 @@
 class Node:
     cost = 0
     parent = 0
-    left = bool()
+    left = bool
     state = []
 
     def __init__(self, cost, parent, state, left):
@@ -17,7 +17,9 @@ class Node:
         for i in self.state:
             if i < 0:
                 return False
-        return self.state[0] >= self.state[1]
+        left = bool(self.state[0] >= self.state[1] or (self.state[0] == 0 and self.state[1] > self.state[0]))
+        right = bool(self.state[2] >= self.state[3] or (self.state[2] == 0 and self.state[3] > self.state[2]))
+        return left and right
 
     def __str__(self):
         return self.state

@@ -64,14 +64,14 @@ if __name__ == '__main__':
         print str(result.state) + " " + str(result.left)
         result = result.parent
     pass
-    # 3 3 0 0
-    # 3 1 0 2
-    # 3 2 0 1
-    # 3 0 0 3
-    # 1 1 2 2
-    # 2 2 1 1
-    # 0 2 3 1
-    # 0 3 3 0
-    # 0 1 3 2
-    # 0 2 3 1
+    # 3 3 0 0 T
+    # 3 1 0 2 F
+    # 3 2 0 1 T
+    # 3 0 0 3 F
+    # 1 1 2 2 T
+    # 2 2 1 1 F
+    # 0 2 3 1 T
+    # 0 3 3 0 F
+    # 0 1 3 2 T
+    # 0 2 3 1 F
     # 0 0 3 3
