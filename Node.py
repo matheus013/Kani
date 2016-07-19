@@ -19,7 +19,6 @@ class Node:
                 return False
         return self.state[0] >= self.state[1]
 
-    @property
     def __str__(self):
         return self.state
 
