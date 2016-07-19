@@ -1,22 +1,27 @@
 from Node import Node
+import copy
 
 priority = []
 
 
 def expand(actual, side):
-    aux = travel(actual, 1, 1, side)
+    aux = travel(copy.deepcopy(actual), 1, 1, side)
     if aux.possible():
         priority.append(aux)
-    aux = travel(actual, 1, 0, side)
+
+    aux = travel(copy.deepcopy(actual), 1, 0, side)
     if aux.possible():
         priority.append(aux)
-    aux = travel(actual, 0, 1, side)
+
+    aux = travel(copy.deepcopy(actual), 0, 1, side)
     if aux.possible():
         priority.append(aux)
-    aux = travel(actual, 2, 0, side)
+
+    aux = travel(copy.deepcopy(actual), 2, 0, side)
     if aux.possible():
         priority.append(aux)
-    aux = travel(actual, 0, 2, side)
+
+    aux = travel(copy.deepcopy(actual), 0, 2, side)
     if aux.possible():
         priority.append(aux)
     priority.sort()
@@ -24,7 +29,7 @@ def expand(actual, side):
 
 
 def travel(current, a, b, side):
-    # print side
+    parent = copy.deepcopy(current)
     if side:
         current.state[0] = current.state[0] - a
         current.state[2] = current.state[2] + a
@@ -35,21 +40,27 @@ def travel(current, a, b, side):
         current.state[2] = current.state[2] - a
         current.state[1] = current.state[1] + b
         current.state[3] = current.state[3] - b
-    return Node(current.state, current, current.cost + 1, not side)
+    return Node(current.cost + 1, parent, current.state, not side)
 
 
 def star(root):
     priority.append(root)
     while priority.__len__() > 0:
         next_node = priority.pop(0)
+        # print str(next_node.state) + " real cost " + str(next_node.cost) + " f(n) = " + str(next_node.f())
         if next_node.finale():
-            print next_node.state
+            # print next_node.state
             return next_node
         expand(next_node, next_node.left)
     pass
 
 
 if __name__ == '__main__':
-    start = Node(0, 0, [3, 3, 0, 0], True)
-    star(start)
+    zero = Node
+    start = Node(0, zero, [3, 3, 0, 0], True)
+    result = star(start)
+
+    while (result != zero):
+        print result.state
+        result = result.parent
     pass

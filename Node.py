@@ -17,7 +17,7 @@ class Node:
         for i in self.state:
             if i < 0:
                 return False
-        return self.state[0] >= self.state[1] & self.state[2] >= self.state[3]
+        return self.state[0] >= self.state[1]
 
     @property
     def __str__(self):
@@ -25,6 +25,12 @@ class Node:
 
     def __lt__(self, other):
         return self.f() < other.f()
+
+    def __ne__(self, other):
+        return self.state != other.state
+
+    def __eq__(self, other):
+        return self.state == other.state
 
     def finale(self):
         return self.state == [0, 0, 3, 3]
